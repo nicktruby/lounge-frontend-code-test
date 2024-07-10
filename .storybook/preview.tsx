@@ -1,4 +1,4 @@
-// .storybook/preview.js
+import React from 'react'
 import { Preview } from '@storybook/react'
 
 import '../src/styles/main.css'
@@ -8,8 +8,12 @@ const preview: Preview = {
     actions: { argTypesRegex: '^on[A-Z].*' },
     layout: 'fullscreen',
     backgrounds: {
-      default: 'white',
+      default: 'grey',
       values: [
+        {
+          name: 'grey',
+          value: '#B5B5B5',
+        },
         {
           name: 'white',
           value: '#ffffff',
@@ -21,6 +25,13 @@ const preview: Preview = {
       ],
     },
   },
+  decorators: [
+    (Story) => (
+      <div className="preview">
+        <Story />
+      </div>
+    ),
+  ],
 }
 
 export default preview
