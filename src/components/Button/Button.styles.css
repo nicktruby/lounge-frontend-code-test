@@ -1,0 +1,57 @@
+.button {
+  @apply flex justify-center items-center gap-2 p-4 h-12 rounded-full font-sans font-semibold text-xs min-w-min uppercase border;
+}
+
+/* Used a transparent border on the solid variant. */
+/* Ensures consistent total size of variants */
+
+/* Solid & Primary */
+.button_variant-solid.button_color-primary {
+  @apply bg-mono-900 text-mono-50 border-transparent  
+  hover:bg-mono-600  
+  active:bg-mono-200 active:text-mono-700
+  disabled:bg-mono-200 disabled:text-mono-700;
+}
+
+/* Solid & Secondary */
+.button_variant-solid.button_color-secondary {
+  @apply bg-mono-50 text-mono-900 border-transparent  
+  hover:bg-mono-400  
+  active:bg-mono-200 active:text-mono-700
+  disabled:bg-mono-200 disabled:text-mono-700;
+}
+
+/* Outline & Primary */
+.button_variant-outline.button_color-primary {
+  @apply bg-mono-500 text-mono-900 border-mono-900  
+  hover:bg-mono-400
+  active:bg-mono-100 active:text-mono-700 active:border-mono-300
+  disabled:bg-mono-300 disabled:text-mono-700 disabled:border-mono-300;
+}
+
+/* Outline & Secondary */
+.button_variant-outline.button_color-secondary {
+  @apply bg-mono-500 text-mono-50 border-mono-50  
+  hover:bg-mono-400  
+  active:bg-mono-300 active:text-mono-500
+  disabled:bg-mono-500 disabled:text-mono-700 disabled:border-mono-700;
+}
+
+/* Min width of content is set on .button. */
+/* Therefore, may not shrink to the below sizes. */
+
+.button_size-s {
+  @apply w-24;
+}
+
+.button_size-m {
+  @apply w-40;
+}
+
+.button_size-l {
+  @apply w-80;
+}
+
+.button__icon {
+  @apply h-6 w-6;
+}
