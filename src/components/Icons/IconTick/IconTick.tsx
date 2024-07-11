@@ -1,9 +1,6 @@
-interface TickIconProps {
-  className?: string
-  testId?: string
-}
+import { IconProps } from '../types'
 
-export const TickIcon: React.FC<TickIconProps> = ({ className, testId }) => {
+export const IconTick: React.FC<IconProps> = ({ className, testId }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

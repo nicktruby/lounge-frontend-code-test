@@ -3,6 +3,9 @@ module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}', './.storybook/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      animation: {
+        'spin-slow': 'spin 1.25s linear infinite',
+      },
       fontFamily: {
         sans: ['Montserrat', 'sans-serif'],
       },

@@ -1,10 +1,16 @@
 import { forwardRef } from 'react'
 import classNames from 'classnames'
 
+import { LeadingIcons } from '../Icons/types'
+import { IconTick, IconLoading } from '../Icons'
 import { ButtonProps } from './types'
 
 import './Button.styles.css'
-import { TickIcon } from '../TickIcon/TickIcon'
+
+const LeadingIconsMap: LeadingIcons = {
+  tick: IconTick,
+  loading: IconLoading,
+}
 
 /**
  * Use `Button` to allow users to take actions with clicks/taps.
@@ -15,7 +21,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       'aria-label': ariaLabel,
       children,
       color = 'primary',
-      iconLeft = false,
+      leadingIcon,
+      isLoading,
       isDisabled,
       onClick,
       size = 'm',
@@ -31,20 +38,31 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       [`button_size-${size}`]: true,
     })
 
+    const IconComponent = leadingIcon ? LeadingIconsMap[leadingIcon] : null
+
     return (
       <button
         aria-label={ariaLabel}
         className={buttonClasses}
         data-testid={testId}
-        disabled={isDisabled}
+        disabled={isDisabled || isLoading}
         onClick={onClick}
         ref={forwardedRef}
         type={type}
       >
-        {iconLeft && (
-          <TickIcon className="button__icon" testId={`${testId}-icon`} />
+        {IconComponent && (
+          <IconComponent
+            className="button__icon"
+            testId={`${testId}-leading-icon`}
+          />
         )}
         {children}
+        {isLoading && (
+          <IconLoading
+            className="button__loading"
+            testId={`${testId}-loading-icon`}
+          />
+        )}
       </button>
     )
   }

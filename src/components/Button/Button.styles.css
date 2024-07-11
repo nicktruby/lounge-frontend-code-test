@@ -55,3 +55,7 @@
 .button__icon {
   @apply h-6 w-6;
 }
+
+.button__loading {
+  @apply h-6 w-6 animate-spin-slow;
+}

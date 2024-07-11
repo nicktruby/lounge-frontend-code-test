@@ -1,13 +1,15 @@
 // types.ts
 
-import { ReactNode } from 'react'
+import { ReactNode, FC } from 'react'
+import { IconName } from '../Icons/types'
 
-export interface ButtonProps {
+export type ButtonProps = {
   'aria-label'?: string
   color?: 'primary' | 'secondary'
   children: ReactNode
-  iconLeft?: boolean
+  leadingIcon?: IconName
   isDisabled?: boolean
+  isLoading?: boolean
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
   size?: 's' | 'm' | 'l'
   testId?: string

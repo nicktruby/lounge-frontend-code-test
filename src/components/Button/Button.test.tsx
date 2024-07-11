@@ -6,13 +6,15 @@ describe('<Button>', () => {
   it('should render with default props', () => {
     render(<Button testId="test-id">Default</Button>)
     const button = screen.getByRole('button')
-    const icon = screen.queryByTestId('test-id-icon')
+    const leadingIcon = screen.queryByTestId('test-id-leading-icon')
+    const loadingIcon = screen.queryByTestId('test-id-loading-icon')
 
     expect(button).toBeInTheDocument()
     expect(button).toHaveAttribute('type', 'button')
     expect(button).not.toHaveAttribute('aria-label')
     expect(button).not.toHaveAttribute('disabled')
-    expect(icon).not.toBeInTheDocument()
+    expect(leadingIcon).not.toBeInTheDocument()
+    expect(loadingIcon).not.toBeInTheDocument()
     expect(button).toHaveClass('button')
     expect(button).toHaveClass('button_color-primary')
     expect(button).toHaveClass('button_variant-solid')
@@ -88,16 +90,26 @@ describe('<Button>', () => {
     expect(button).toHaveAttribute('aria-label', 'screen-reader-text')
   })
 
-  it('should render with left icon', () => {
+  it('should render with leading icon', () => {
     render(
-      <Button iconLeft testId="test-button">
+      <Button leadingIcon="tick" testId="test-button">
         With icon
       </Button>
     )
     const button = screen.getByRole('button')
-    const icon = screen.getByTestId('test-button-icon')
+    const icon = screen.getByTestId('test-button-leading-icon')
 
     expect(button).toContainElement(icon)
+  })
+
+  it('triggers onClick when clicked', async () => {
+    const handleClick = jest.fn()
+    render(<Button onClick={handleClick}>Clickable</Button>)
+    const button = screen.getByRole('button')
+
+    await userEvent.click(button)
+
+    expect(handleClick).toHaveBeenCalled()
   })
 
   it('should render a disabled button, which should not trigger onClick', async () => {
@@ -115,13 +127,20 @@ describe('<Button>', () => {
     expect(handleClick).not.toHaveBeenCalled()
   })
 
-  it('triggers onClick when clicked', async () => {
+  it('should render the loading state, which should not trigger onClick', async () => {
     const handleClick = jest.fn()
-    render(<Button onClick={handleClick}>Clickable</Button>)
+    const { debug } = render(
+      <Button isLoading onClick={handleClick} testId="test-id">
+        Loading
+      </Button>
+    )
     const button = screen.getByRole('button')
+    const loadingIcon = screen.queryByTestId('test-id-loading-icon')
 
     await userEvent.click(button)
 
-    expect(handleClick).toHaveBeenCalled()
+    expect(button).toContainElement(loadingIcon)
+    expect(button).toHaveAttribute('disabled')
+    expect(handleClick).not.toHaveBeenCalled()
   })
 })

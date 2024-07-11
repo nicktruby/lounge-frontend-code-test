@@ -27,10 +27,13 @@ const meta: ButtonMeta = {
         options: ['s', 'm', 'l'],
       },
     },
-    iconLeft: {
+    leadingIcon: {
       control: 'boolean',
     },
     isDisabled: {
+      control: 'boolean',
+    },
+    isLoading: {
       control: 'boolean',
     },
     onClick: { action: 'clicked' },
@@ -54,8 +57,8 @@ export default meta
 export const SolidPrimary: ButtonStory = {
   args: {
     color: 'primary',
-    iconLeft: false,
     isDisabled: false,
+    isLoading: false,
     size: 'l',
     children: 'Button',
     variant: 'solid',
@@ -68,7 +71,7 @@ export const SolidSecondary: ButtonStory = {
     color: 'secondary',
     size: 'l',
     isDisabled: false,
-    iconLeft: false,
+    isLoading: false,
     children: 'Button',
     variant: 'solid',
     type: 'button',
@@ -79,7 +82,7 @@ export const OutlinePrimary: ButtonStory = {
   args: {
     color: 'primary',
     isDisabled: false,
-    iconLeft: false,
+    isLoading: false,
     size: 'l',
     children: 'Button',
     variant: 'outline',
@@ -91,7 +94,7 @@ export const OutlineSecondary: ButtonStory = {
   args: {
     color: 'secondary',
     isDisabled: false,
-    iconLeft: false,
+    isLoading: false,
     variant: 'outline',
     children: 'Button',
     size: 'l',
@@ -103,7 +106,7 @@ export const SizeSmall: ButtonStory = {
   args: {
     color: 'primary',
     isDisabled: false,
-    iconLeft: false,
+    isLoading: false,
     size: 's',
     children: 'Button',
     variant: 'solid',
@@ -115,7 +118,7 @@ export const SizeMedium: ButtonStory = {
   args: {
     color: 'primary',
     isDisabled: false,
-    iconLeft: false,
+    isLoading: false,
     size: 'm',
     children: 'Button',
     variant: 'solid',
@@ -127,7 +130,7 @@ export const SizeLarge: ButtonStory = {
   args: {
     color: 'primary',
     isDisabled: false,
-    iconLeft: false,
+    isLoading: false,
     size: 'l',
     children: 'Button',
     variant: 'solid',
@@ -139,7 +142,7 @@ export const Disabled: ButtonStory = {
   args: {
     color: 'primary',
     isDisabled: true,
-    iconLeft: false,
+    isLoading: false,
     size: 'l',
     children: 'Button',
     variant: 'solid',
@@ -147,11 +150,24 @@ export const Disabled: ButtonStory = {
   },
 }
 
-export const WithIconLeft: ButtonStory = {
+export const WithLeadingIcon: ButtonStory = {
   args: {
     color: 'primary',
     isDisabled: false,
-    iconLeft: true,
+    isLoading: false,
+    leadingIcon: 'tick',
+    size: 'l',
+    children: 'Button',
+    variant: 'solid',
+    type: 'button',
+  },
+}
+
+export const Loading: ButtonStory = {
+  args: {
+    color: 'primary',
+    isDisabled: false,
+    isLoading: true,
     size: 'l',
     children: 'Button',
     variant: 'solid',
